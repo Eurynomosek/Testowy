@@ -33,20 +33,12 @@
 
 @section('javascript')
 
-$(function() {
-    $('.delete').click(function() {
-        $.ajax({
-            method: "DELETE",
-            url: "/users/" + $(this).data("id")
-        //    data: { id: $(this).data("id") }
-        })
-        .done(function( response ) {
-            window.location.reload();
-        })
-        .fail(function( response ) {
-            alert("Fail");
-        });
-    });
-});
+const deleteUrl = "{{ url('users') }}/";
+
+@endsection
+
+@section('js-files')
+
+<script src="{{ asset('js/delete.js') }}"></script>
 
 @endsection
