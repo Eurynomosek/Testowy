@@ -1,0 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+php artisan make:request StoreProductRequest
