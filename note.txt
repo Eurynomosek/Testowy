@@ -10,8 +10,33 @@
 
 
 
-
+-==============================================================
 
 
 
 php artisan make:request StoreProductRequest
+
+-==============================================================
+php artisan make:model ProductCategory -m
+
+
+-==============================================================
+php artisan migrate
+php artisan migrate:rollback
+
+
+
+-==============================================================
+php artisan tinker -> interakcja z DB
+
+$category = new ProductCategory();
+$category->name = "Laptopy";
+$category->save();
+
+
+
+-==============================================================
+
+npm run dev
+
+-==============================================================

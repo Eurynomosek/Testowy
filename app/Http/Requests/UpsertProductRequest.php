@@ -28,7 +28,23 @@ class UpsertProductRequest extends FormRequest
             'description' => 'required|max:1500',
             'amount' => 'required|integer',
             'price' => 'required|numeric|between:0,999999.99',
-            'image' => 'nullable|image|mimes:jpg,png'
+            'image' => 'nullable|image|mimes:jpg,png',
+            'category_id' => 'nullable|integer'
         ];
     }
+/*
+    public function messages()
+    {
+        return [
+            'name.required' => 'Jest wymagane pole :attribute'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'nazwa'
+        ];
+    }
+    */
 }

@@ -1,7 +1,7 @@
-$(function() {
-    $('.delete').click(function() {
+$(function () {
+    $('.delete').click(function () {
         Swal.fire({
-            title: 'Czy na pewno chcesz usunąć rekord?',
+            title: confirmDelete,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -14,10 +14,10 @@ $(function() {
                     method: "DELETE",
                     url: deleteUrl + $(this).data("id")
                 })
-                .done(function(data) {
+                .done(function (data) {
                     window.location.reload();
                 })
-                .fail(function(data) {
+                .fail(function (data) {
                     Swal.fire('Oops...', data.responseJSON.message, data.responseJSON.status);
                 });
             }
