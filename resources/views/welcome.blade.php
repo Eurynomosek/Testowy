@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="products-wrapper">
 
                     @foreach ($products as $product)
 
@@ -52,14 +52,12 @@
                                 <img src="{{ asset('storage/' . $product->image_path) }}"
                                     class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                 @else
-                                <img src="https://via.placeholder.com/240x240/5fa9f8/efefef"
-                                    class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                <img src="{{ $defaultImage }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                 @endif
                             </div>
                             <div class="card-body text-center">
                                 <h4 class="card-title">
-                                    <a href="product.html" class=" font-weight-bold text-dark text-uppercase small">
-                                        {{ $product->name }}</a>
+                                    {{ $product->name }}
                                 </h4>
                                 <h5 class="card-price small">
                                     <i>PLN {{ $product->price }}</i>
@@ -124,6 +122,10 @@
         </form>
     </div>
 </div>
+@endsection
+@section('javascript')
+    const storagePath = '{{ asset('storage') }}/';
+    const defaultImage = '{{ $defaultImage }}';
 @endsection
 @section('js-files')
     <script src="{{ asset("js/welcome.js") }}"></script>
