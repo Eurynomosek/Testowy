@@ -7,7 +7,7 @@ $(function() {
         const form = $('form.sidebar-filter').serialize();
         $.ajax({
             method: "GET",
-            url: "/",
+            url: mainURL,
             data: form
         })
         .done(function (response) {

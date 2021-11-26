@@ -21,18 +21,17 @@
                             </div>
                         </div>
                         <div class="btn-group float-md-right ml-3">
-                            <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-left"></span>
+                            <button type="button" class="btn btn-lg btn-light">
+                                <span class="fa fa-arrow-left"></span>
                             </button>
-                            <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-right"></span>
+                            <button type="button" class="btn btn-lg btn-light">
+                                <span class="fa fa-arrow-right"></span>
                             </button>
                         </div>
                         <div class="dropdown float-right">
                             <label class="mr-2">View:</label>
-                            <a class="btn btn-lg btn-light dropdown-toggle" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">9 <span class="caret"></span></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
-                                x-placement="bottom-end"
-                                style="will-change: transform; position: absolute; transform: translate3d(120px, 48px, 0px); top: 0px; left: 0px;">
+                            <a class="btn btn-lg btn-light dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">9 <span class="caret"></span></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" x-placement="bottom-end" style="will-change: transform; position: absolute; transform: translate3d(120px, 48px, 0px); top: 0px; left: 0px;">
                                 <a class="dropdown-item" href="#">12</a>
                                 <a class="dropdown-item" href="#">24</a>
                                 <a class="dropdown-item" href="#">48</a>
@@ -71,8 +70,9 @@
                 </div>
                 <div class="row sorting mb-5 mt-5">
                     <div class="col-12">
+                        {{ $products->links() }}
                         <a class="btn btn-light">
-                            <i class="fas fa-arrow-up mr-2"></i> Back to top</a>
+                            <i class="fas fa-arrow-up mr-2"></i> ^Do góry</a>
                         <div class="btn-group float-md-right ml-3">
                             <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-left"></span>
                             </button>
@@ -112,20 +112,21 @@
             <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
             <h6 class="text-uppercase mt-5 mb-3 font-weight-bold">{{ __('shop.welcome.price') }}</h6>
             <div class="price-filter-control">
-                <input type="number" class="form-control w-50 pull-left mb-2" placeholder="50" name="filter[price_min]" id="price-min-control">
-                <input type="number" class="form-control w-50 pull-right" placeholder="150" name="filter[price_max]" id="price-max-control">
+                <input type="number" class="form-control w-50 pull-left mb-2" placeholder="0" name="filter[price_min]" id="price-min-control">
+                <input type="number" class="form-control w-50 pull-right" placeholder="0" name="filter[price_max]" id="price-max-control">
             </div>
-            <input id="ex2" type="text" class="slider " value="50,150" data-slider-min="10" data-slider-max="200"
-                data-slider-step="5" data-slider-value="[50,150]" data-value="50,150" style="display: none;">
+            <input id="ex2" type="text" class="slider " value="50,150" data-slider-min="10" data-slider-max="200" data-slider-step="5" data-slider-value="[50,150]" data-value="50,150" style="display: none;">
             <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
             <a href="#" class="btn btn-lg btn-block btn-primary mt-5" id="filter-button">{{ __('shop.welcome.filter') }}</a>
         </form>
     </div>
 </div>
+
 @endsection
 @section('javascript')
-    const storagePath = '{{ asset('storage') }}/';
-    const defaultImage = '{{ $defaultImage }}';
+const mainURL = '{{ route('index') }}/';
+const storagePath = '{{ asset('storage') }}/';
+const defaultImage = '{{ $defaultImage }}';
 @endsection
 @section('js-files')
     <script src="{{ asset("js/welcome.js") }}"></script>
