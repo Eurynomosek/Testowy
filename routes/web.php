@@ -27,7 +27,7 @@ Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name
 Route::post('/products/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('auth');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('auth');
 
-Route::get('/users/list', [UserController::class, 'index'])->middleware('auth');
+Route::get('/users/list', [UserController::class, 'index'])->name('users.index')->middleware('auth');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware('auth');
 
 Auth::routes();
