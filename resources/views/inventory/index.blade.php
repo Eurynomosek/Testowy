@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    @include('helpers.flash-messages')
     <div class="row">
         <div class="col-6">
             <h1><i class="fas fa-clipboard-list"></i> {{ __('shop.product.index_title') }}</h1>
@@ -27,30 +26,30 @@
                 </tr>
             </thead>
             <tbody>
-@foreach ($products as $product )
+@foreach ($inventorys as $inventory )
                 <tr>
-                    <th scope="row">{{ $product->id }}</th>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
-                    <td>{{ $product->amount }}</td>
-                    <td>{{ $product->price }}</td>
-                    <td>@if($product->hasCategory()){{ $product->category->name }} @endif</td>
+                    <th scope="row">{{ $inventory->id }}</th>
+                    <td>{{ $inventory->int_numer }}</td>
+                    <td>{{ $inventory->int_wysoko }}</td>
+                    <td>{{ $inventory->int_nazwa }}</td>
+                    <td>{{ $inventory->int_data }}</td>
+                    <td>{{ $inventory->int_nazwisko }}</td>
                     <td>
-                        <a href="{{ route('products.show', $product->id) }}">
+                        <a href=" ">
                             <button class="btn btn-primary btn-sm "> P </button>
                         </a>
-                        <a href="{{ route('products.edit', $product->id) }}">
+                        <a href="">
                             <button class="btn btn-success btn-sm "> E </button>
                         </a>
 
-                        <button class="btn btn-danger btn-sm delete" data-id="{{ $product->id }}"> X </button>
+                        <button class="btn btn-danger btn-sm delete" data-id=""> X </button>
 
                     </td>
                 </tr>
 @endforeach
             </tbody>
         </table>
-{{ $products->links() }}
+{{ $inventorys->links() }}
     </div>
 </div>
 @endsection

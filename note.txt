@@ -11,6 +11,9 @@
 
 
 -==============================================================
+php artisan config:cache    - po zmianach  w .env
+php artisan route:clear
+php artisan route:cache
 
 
 
