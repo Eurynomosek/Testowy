@@ -126,7 +126,7 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" title="Zapisz"><i class="far fa-save"></i>
                                     {{ __('shop.button.save') }}
                                 </button>
                             </div>

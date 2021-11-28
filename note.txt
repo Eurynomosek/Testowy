@@ -51,4 +51,11 @@ php artisan db:seed
 -==============================================================
 -==============================================================
 -==============================================================
-npm install -g npm@8.1.4
+npm install -g npm@8.1.4  // nie uzywac na win 7
+-==============================================================
+npm i @fortawesome/fontawesome-free
+npm i --save @fortawesome/fontawesome-free
+https://medium.com/swlh/using-font-awesome-with-laravel-8-x-1f80cb6d8f10
+
+
+

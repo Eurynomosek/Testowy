@@ -9,7 +9,7 @@
         </div>
         <div class="col-6">
             <a class="float-right" href="{{ route('products.create') }}">
-                <button type="button" class="btn btn-primary">{{ __('shop.button.add') }}</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button>
             </a>
         </div>
     </div>
@@ -37,13 +37,13 @@
                     <td>@if($product->hasCategory()){{ $product->category->name }} @endif</td>
                     <td>
                         <a href="{{ route('products.show', $product->id) }}">
-                            <button class="btn btn-primary btn-sm "> P </button>
+                            <button class="btn btn-primary btn-sm " title="Podgląd"><i class="far fa-eye"></i></button>
                         </a>
                         <a href="{{ route('products.edit', $product->id) }}">
-                            <button class="btn btn-success btn-sm "> E </button>
+                            <button class="btn btn-success btn-sm " title="Edytuj"><i class="far fa-edit"></i></button>
                         </a>
 
-                        <button class="btn btn-danger btn-sm delete" data-id="{{ $product->id }}"> X </button>
+                        <button class="btn btn-danger btn-sm delete" data-id="{{ $product->id }}" title="Usuń"><i class="far fa-trash-alt"></i></button>
 
                     </td>
                 </tr>
