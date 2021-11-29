@@ -15,7 +15,7 @@ php artisan config:cache    - po zmianach  w .env
 php artisan route:clear
 php artisan route:cache
 
-
+php artisan optimize:clear - jak był problem z  "supported method HEAD"
 
 php artisan make:request StoreProductRequest
 

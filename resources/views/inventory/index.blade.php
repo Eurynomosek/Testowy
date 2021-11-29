@@ -17,11 +17,11 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ __('shop.product.fields.name') }}</th>
-                    <th scope="col">{{ __('shop.product.fields.description') }}</th>
-                    <th scope="col">{{ __('shop.product.fields.amount') }}</th>
-                    <th scope="col">{{ __('shop.product.fields.price') }}</th>
-                    <th scope="col">{{ __('shop.product.fields.category') }}</th>
+                    <th scope="col">Numer inwentarzowy</th>
+                    <th scope="col">Wysokocenny?</th>
+                    <th scope="col">Opis</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Odpowiedzialny materialnie</th>
                     <th scope="col">{{ __('shop.columns.actions') }}</th>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@
 @endforeach
             </tbody>
         </table>
-{{ $inventorys->links() }}
+
     </div>
 </div>
 @endsection

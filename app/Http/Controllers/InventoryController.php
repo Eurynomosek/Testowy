@@ -15,7 +15,7 @@ class InventoryController extends Controller
     public function index()
     {
         return view('inventory.index',[
-            'inventorys' => Inventory::paginate(50)
+            'inventorys' => Inventory::all() //paginate(50)
         ]);
     }
 
