@@ -9,15 +9,42 @@ $(function() {
         getProducts($(this).text());
     });
 
-    $('a#filter-button').click(function() {
+    $('a#filter-button').click(function(event) {
+        event.preventDefault();
         getProducts($('a.products-actual-count').first().text());
+    });
+
+    $('button.add-cart-button').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: WELCOME_DATA.addToCart + $(this).data('id')
+        })
+        .done(function() {
+            Swal.fire({
+                title: 'Brawo',
+                text: 'Produkt dodany do koszyka',
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonText: '<i class="fas fa-cart-plus"></i>Przejdz do koszyka',
+                cancelButtonText: '<i class="fas fa-shopping-bag"></i>Kontynuuj zakupy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    alert('ok');
+                }
+            })
+        })
+        .fail(function () {
+            Swal.fire('Oops...','Wystąpił błąd', 'error');
+
+        });
     });
 
     function getProducts(paginate) {
         const form = $('form.sidebar-filter').serialize();
         $.ajax({
             method: "GET",
-            url: mainURL,
+            url: WELCOME_DATA.mainURL,
             data: form + "&" + $.param({paginate: paginate})
         })
         .done(function (response) {
@@ -43,8 +70,8 @@ $(function() {
 
     function getImage(product) {
         if (!!product.image_path) {
-            return storagePath + product.image_path;
+            return WELCOME_DATA.storagePath + product.image_path;
         }
-        return defaultImage;
+        return WELCOME_DATA.defaultImage;
     }
 });

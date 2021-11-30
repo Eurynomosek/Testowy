@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/users/list', [UserController::class, 'index'])->name('users.index');
         Route::delete('/users/{user}', [UserController::class, 'destroy']);
     });
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 

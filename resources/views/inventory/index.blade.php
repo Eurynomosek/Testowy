@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-6">
             <h1><i class="fas fa-clipboard-list"></i> {{ __('shop.product.index_title') }}</h1>
