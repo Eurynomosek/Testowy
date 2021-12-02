@@ -3,10 +3,13 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
+        <div class="col-4">
             <h1><i class="fas fa-clipboard-list"></i> {{ __('shop.product.index_title') }}</h1>
         </div>
-        <div class="col-6">
+        <div class="col-4">
+            <input type="text" id="search-opis" class="form-control" placeholder="Wyszukaj artykuł po opisie">
+        </div>
+        <div class="col-4">
             <a class="float-right" href="{{ route('products.create') }}">
                 <button type="button" class="btn btn-primary">{{ __('shop.button.add') }}</button>
             </a>
@@ -25,7 +28,7 @@
                     <th scope="col">{{ __('shop.columns.actions') }}</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="dynamic-row">
 @foreach ($inventorys as $inventory )
                 <tr>
                     <th scope="row">{{ $inventory->id }}</th>
@@ -54,8 +57,42 @@
 </div>
 @endsection
 @section('javascript')
-    const deleteUrl = "{{ url('products') }}/";
-    const confirmDelete = "{{ __('shop.messages.delete_confirm') }}";
+    $('body').on('keyup', '#search-opis', function(){
+        var searchQuest = $(this).val();
+        $.ajax({
+            method: 'POST',
+            url: '{{ route('inventory.search') }}',
+            dataTypr: 'json',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                searchQuest: searchQuest
+            },
+            success: function(res){
+                var tableRow ='';
+
+                $('#dynamic-row').html('');
+
+                $.each(res, function(index, value){
+                    tableRow = '<tr>' +
+                        '<th scope="row">' + value.id + '</th>' +
+                        '<td>' + value.int_numer + '</td>' +
+                        '<td>' + value.int_wysoko + '</td>' +
+                        '<td>' + value.int_nazwa + '</td>' +
+                        '<td>' + value.int_data + '</td>' +
+                        '<td>' + value.int_nazwisko + '</td>' +
+                        '<td>' +
+                        '<a href=" "><button class="btn btn-primary btn-sm "> P </button></a>' +
+                        '<a href=""><button class="btn btn-success btn-sm "> E </button></a>' +
+                        '<button class="btn btn-danger btn-sm delete" data-id=""> X </button>' +
+                        '</td>' +
+                    '</tr>';
+
+                    $('#dynamic-row').append(tableRow);
+
+                });
+            }
+        });
+    });
 @endsection
 @section('js-files')
     <script src="{{ asset('js/delete.js') }}"></script>

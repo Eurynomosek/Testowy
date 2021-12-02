@@ -84,4 +84,13 @@ class InventoryController extends Controller
     {
         //
     }
+
+
+    public function search( Request $request)
+    {
+        $q = Inventory::where('int_nazwa', 'like', '%' .$request->get('searchQuest'). '%')->get();
+
+        return json_decode($q);
+
+    }
 }

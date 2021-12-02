@@ -44,6 +44,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 //Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('auth');
 
 Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index')->middleware('auth');
-
+Route::post('/inventory/search', [InventoryController::class, 'search'])->name('inventory.search')->middleware('auth');
 
 Auth::routes(['verify' => true]);
