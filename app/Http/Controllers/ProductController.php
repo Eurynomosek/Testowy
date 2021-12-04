@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Product;
 use App\Models\ProductCategory;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UpsertProductRequest;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProductController extends Controller
 {
@@ -91,8 +93,12 @@ class ProductController extends Controller
      */
     public function update(UpsertProductRequest $request, Product $product): RedirectResponse
     {
+        $oldImagePath = $product->image_path;
         $product->fill($request->validated());
         if ($request->hasFile('image')) {
+            if (Storage::exists($oldImagePath)) {
+                Storage::delete($oldImagePath);
+            }
             $product->image_path = $request->file('image')->store('products');
         }
         $product->save();
@@ -119,5 +125,19 @@ class ProductController extends Controller
                 'message'=> 'Wystąpił błąd'
             ])->setStatusCode(500);
         }
+    }
+
+    /**
+     * Download image of the specified resource in storage.
+     *
+     * @param  Product  $product
+     * @return RedirectResponse|StreamedResponse
+     */
+    public function downloadImage(Product $product): RedirectResponse|StreamedResponse
+    {
+        if (Storage::exists($product->image_path)) {
+            return Storage::download($product->image_path, $product->name . '-' . $product->id . '.jpg');
+        }
+        return Redirect::back();
     }
 }
