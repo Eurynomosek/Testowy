@@ -119,10 +119,11 @@
 @endsection
 @section('javascript')
     const WELCOME_DATA = {
-        mainURL: '{{ route('index') }}/',
         storagePath: '{{ asset('storage') }}/',
         defaultImage: '{{ $defaultImage }}',
         addToCart: '{{ url('cart') }}/',
+        listCart: '{{ url('cart') }}',
+        isGuest: '{{ $isGuest }}'
     }
 @endsection
 @section('js-files')

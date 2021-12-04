@@ -30,7 +30,7 @@ $(function() {
                 cancelButtonText: '<i class="fas fa-shopping-bag"></i>Kontynuuj zakupy'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    alert('ok');
+                    window.location = WELCOME_DATA.listCart;
                 }
             })
         })
@@ -73,5 +73,12 @@ $(function() {
             return WELCOME_DATA.storagePath + product.image_path;
         }
         return WELCOME_DATA.defaultImage;
+    }
+
+    function getDisabled() {
+        if (WELCOME_DATA.isGuest) {
+            return ' disabled';
+        }
+        return '';
     }
 });

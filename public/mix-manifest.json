@@ -3,5 +3,6 @@
     "/js/delete.js": "/js/delete.js",
     "/js/welcome.js": "/js/welcome.js",
     "/js/dynsearch.js": "/js/dynsearch.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/cart.css": "/css/cart.css"
 }

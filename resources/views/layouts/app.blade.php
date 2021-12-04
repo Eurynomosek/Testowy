@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css-files')
 </head>
 <body>
     <div id="app">
@@ -57,6 +58,7 @@
                                 <a class="dropdown-item" href="{{ route('users.index') }}">Użytkownicy</a>
                                 <a class="dropdown-item" href="{{ route('products.index') }}">Produkty</a>
 @endcan
+                                <a class="dropdown-item" href="{{ route('cart.index') }}">Koszyk</a>
                                 <a class="dropdown-item" href="{{ route('inventory.index') }}">Inwentaryzacja</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

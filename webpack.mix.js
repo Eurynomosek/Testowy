@@ -16,5 +16,6 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/welcome.js', 'public/js')
     .js('resources/js/dynsearch.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .postCss('resources/css/cart.css', 'public/css')
     .sourceMaps();
 mix.browserSync('localhost');
