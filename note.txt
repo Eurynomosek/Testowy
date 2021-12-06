@@ -59,3 +59,22 @@ https://medium.com/swlh/using-font-awesome-with-laravel-8-x-1f80cb6d8f10
 
 
 
+odcinek Relacja onetoone
+
+php artisan make:model Address --migration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

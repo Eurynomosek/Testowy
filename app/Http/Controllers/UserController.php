@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Contracts\Foundation\Application;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class UserController extends Controller
 {
@@ -60,30 +65,40 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  User  $user
+     * @return View
      */
-    public function edit($id)
+    public function edit(User $user): View
     {
-        //
+        return view('users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateUserRequest  $request
+     * @param  User  $user
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        //
+        $addressValidated = $request->validated()['address'];
+        if ($user->hasAddress()) {
+            $address = $user->address;
+            $address->fill($addressValidated);
+        } else {
+            $address = new Address($addressValidated);
+        }
+        $user->address()->save($address);
+        return redirect(route('users.index'))->with('status', __('shop.product.status.update.success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  User  $user
+     * @param User $user
      * @return JsonResponse
      */
     public function destroy(User $user): JsonResponse
@@ -92,14 +107,13 @@ class UserController extends Controller
             $user->delete();
             Session::flash('status', __('shop.user.status.delete.success'));
             return response()->json([
-                'status'=> 'success'
+                'status' => 'success'
             ]);
-        } catch (Exception $e){
+        } catch (Exception $e) {
             return response()->json([
-                'status'=> 'error',
-                'message'=> 'Wystąpił błąd'
+                'status' => 'error',
+                'message' => 'Wystąpił błąd!'
             ])->setStatusCode(500);
         }
-
     }
 }

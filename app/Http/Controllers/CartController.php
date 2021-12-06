@@ -19,7 +19,7 @@ class CartController extends Controller
     public function index(): View
     {
         return view('cart.index', [
-            'cart' => Session::get('cart', new Cart())
+            'cart' => dd(Session::get('cart', new Cart()))
         ]);
     }
 

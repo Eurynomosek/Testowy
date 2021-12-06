@@ -6,10 +6,9 @@ use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class WelcomeController extends Controller
 {
@@ -25,7 +24,6 @@ class WelcomeController extends Controller
         $paginate = $request->query('paginate') ?? 5;
 
         $query = Product::query();
-
         if (!is_null($filters)) {
             if (array_key_exists('categories', $filters)) {
                 $query = $query->whereIn('category_id', $filters['categories']);
@@ -40,7 +38,7 @@ class WelcomeController extends Controller
             return response()->json($query->paginate($paginate));
         }
 
-        return view('welcome',[
+        return view("welcome", [
             'products' => $query->paginate($paginate),
             'categories' => ProductCategory::orderBy('name', 'ASC')->get(),
             'defaultImage' => config('shop.defaultImage'),
