@@ -1,4 +1,6 @@
-
+Lekcja 01 - Jak utworzyć projekt w laravel
+:: composer create-project --prefer-dist laravel/laravel NazwaProjektu
+:: php artisan serve
 
 
 
